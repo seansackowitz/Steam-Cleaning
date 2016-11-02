@@ -53,7 +53,7 @@ namespace Steam_Cleaning
         {
             try
             {
-                Directory.GetFiles(Path.GetDirectoryName(e.FullPath)).Select(x => new FileInfo(x))
+                Directory.GetFiles(Path.GetDirectoryName(e.FullPath), Data.Filter).Select(x => new FileInfo(x))
                  .OrderByDescending(x => x.LastWriteTime)
                  .Skip(Data.Keep)
                  .ToList()
