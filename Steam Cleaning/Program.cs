@@ -21,7 +21,16 @@ namespace Steam_Cleaning
             XmlDocument reader = new XmlDocument();
 
             try { reader.Load("data.xml"); }
-            catch (FileNotFoundException e) { throw new FileNotFoundException(e.Message); }
+            catch (FileNotFoundException e)
+            {
+                using (XmlWriter xW = XmlWriter.Create("data.xml"))
+                {
+                    xW.WriteStartDocument();
+                    xW.WriteStartElement("Carpets");
+                    xW.WriteEndElement();
+                    reader.Load("data.xml");
+                }
+            }
 
             XmlElement root = reader.DocumentElement;
             XmlNodeList nodeList = root.GetElementsByTagName("Carpet");
