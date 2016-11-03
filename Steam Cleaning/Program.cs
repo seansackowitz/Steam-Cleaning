@@ -55,6 +55,7 @@ namespace Steam_Cleaning
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Filter = Data.Filter;
             watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.Created += new FileSystemEventHandler(OnChanged);
             watcher.EnableRaisingEvents = true;
         }
 
